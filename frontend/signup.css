@@ -1,0 +1,144 @@
+/* ---------------- GLOBAL PAGE BACKGROUND ---------------- */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ---------------- FLOATING CIRCLES ---------------- */
+.floating-circles span {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-circles span:nth-child(1) { top: 10%; left: 15%; }
+.floating-circles span:nth-child(2) { bottom: 15%; right: 20%; width: 140px; height: 140px; }
+.floating-circles span:nth-child(3) { bottom: 20%; left: 30%; width: 120px; height: 120px; }
+
+@keyframes float {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+}
+
+/* ---------------- BRAND NAME ---------------- */
+.brand-name {
+    position: absolute;
+    top: 20px;
+    left: 25px;      /* Moves it to the left corner */
+    transform: none; /* Remove centering */
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ---------------- SIGNUP BOX ---------------- */
+.signup-box {
+    width: 380px;
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.signup-box h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+/* ---------------- INPUTS ---------------- */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+label {
+    color: white;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: rgba(255,255,255,0.85);
+}
+
+/* Live validation messages */
+.msg {
+    height: 18px;
+    font-size: 13px;
+    color: #ffd1d1;
+}
+
+/* ---------------- BUTTON ---------------- */
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #0a1d5a;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btn:hover {
+    background: #112c85;
+}
+
+/* ---------------- POPUP ---------------- */
+.popup-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    width: 330px;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.popup button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    background: #1e3a8a;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}

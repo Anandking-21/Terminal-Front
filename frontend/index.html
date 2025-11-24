@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaHeal Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="brand">AquaHeal</div>
+    <button id="logoutBtn">Logout</button>
+</div>
+
+<div class="floating-circles">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <h1 class="title">💧 Leak Monitoring Dashboard</h1>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Water Flow</h3>
+            <p id="flow-rate">-- L/min</p>
+        </div>
+
+        <div class="card">
+            <h3>Leak Status</h3>
+            <p id="leak-status">--</p>
+        </div>
+
+        <div class="card">
+            <h3>Last Updated</h3>
+            <p id="timestamp">--</p>
+        </div>
+    </div>
+
+    <h2 class="table-title">Recent Sensor Data</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Flow (L/min)</th>
+                <th>Leak</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>

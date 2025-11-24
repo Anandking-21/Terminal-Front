@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+
+<body>
+
+<!-- Floating animated background circles -->
+<div class="floating-circles">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<!-- Brand Name -->
+<div class="brand-name">AquaHeal</div>
+
+<!-- SIGNUP BOX -->
+<div class="signup-box">
+    <h2>Create Account</h2>
+
+    <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" oninput="validateEmail()">
+        <p class="msg" id="emailMsg"></p>
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" oninput="validatePassword()">
+        <p class="msg" id="passMsg"></p>
+    </div>
+
+    <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirm" oninput="validateConfirm()">
+        <p class="msg" id="confirmMsg"></p>
+    </div>
+
+    <button class="signup-btn" onclick="signup()">Sign Up</button>
+</div>
+
+<!-- SUCCESS POPUP -->
+<div class="popup-bg" id="popup">
+    <div class="popup">
+        <h3>🎉 Account Created!</h3>
+        <p>Your account has been successfully created.</p>
+        <button onclick="goLogin()">Go to Login</button>
+    </div>
+</div>
+
+<script src="signup.js"></script>
+
+</body>
+</html>

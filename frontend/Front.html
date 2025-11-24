@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AquaHeal — Neon Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="Front.css">
+</head>
+<body>
+
+  <header class="topbar" role="banner">
+    <div class="brand">
+      <div class="logo">AquaHeal</div>
+      <div class="tag">Smart IoT Water Leakage Monitoring</div>
+    </div>
+
+    <nav class="nav" role="navigation" aria-label="Main">
+      <a href="#india">India</a>
+      <a href="#global">Global</a>
+      <a href="#features">Features</a>
+    </nav>
+
+    <div class="actions">
+      <button class="btn ghost"><a href="login.html">Log in</button></a>
+      <button class="btn primary"><a href="signup.html">Sign up</button></a>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Global & India Leakage Dashboard</h1>
+        <p class="lead">Actionable insights from IoT sensors — state trends and global comparisons with realtime-style UI.</p>
+
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-title">Total Estimated Loss</div>
+            <div class="kpi-value" id="kpi-total">0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">Avg. Leakage Rate</div>
+            <div class="kpi-value" id="kpi-rate">0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">Active Alerts</div>
+            <div class="kpi-value" id="kpi-alerts">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card small-card tilt">
+          <div class="card-head">Quick Actions</div>
+          <ul class="quick-list">
+            <li>Dispatch field crew to top hotspots</li>
+            <li>Schedule sensor recalibration</li>
+            <li>Temporary pipe isolation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD GRID -->
+    <section class="grid" aria-live="polite">
+      <!-- Left: India state selector + chart -->
+      <div class="col">
+        <div class="card tilt">
+          <div class="card-head">India — State Leakage (select state)</div>
+          <div class="card-body">
+            <select id="stateSelect" class="select" aria-label="Select state for leakage chart">
+              <option value="">— Choose state —</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+            </select>
+
+            <div id="chartContainer" class="chart-wrap" role="region" aria-label="State leakage chart">
+              <canvas id="stateChart" aria-label="State leakage chart canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card tilt">
+          <div class="card-head"><span class="headx">Insights</div></span>
+          <div class="card-body">
+            <ul class="insights">
+
+  <span class="gh-news-icon">💧</span><span class="n-title"><strong>India Trends</strong></span>
+  <li>States with rising leakage: Maharashtra, Rajasthan</li>
+  <li>Temporary shut-offs reduced loss by ~7% in pilot</li>
+  <li>Predictive models reduce false positives by ~12%</li>
+
+  <br>
+
+  <span class="gh-news-icon">💧</span><span class="n-title"><strong>Foreign Leakage Stats (2020–2024)</strong></span>
+  <li>United States: 980 → 1080 MLD</li>
+  <li>China: 1300 → 1450 MLD</li>
+  <li>Brazil: 740 → 840 MLD</li>
+  <li>Mexico: 640 → 750 MLD</li>
+  <li>Indonesia: 820 → 940 MLD</li>
+
+  <br>
+
+  <span class="gh-news-icon">💧</span><span class="n-title"><strong>Global Highlights</strong></span>
+  <li>China leads with the highest yearly leakage (1450 MLD in 2024)</li>
+  <li>Brazil & Mexico show steady 3–4% annual rise</li>
+  <li>Indonesia projected to cross 1000 MLD by 2026</li>
+  <br>
+<span class="gh-news-icon">💧</span><span class="n-title"><strong>Major Global Water-Leakage Events (Past & Current)</strong></span>
+
+<li>2024 – London: Thames Water reported record leakage exceeding 630 million liters/day due to aging pipelines.</li>
+
+<li>2023 – Italy: Northern Italy faced its worst drought in 70 years; leakage blamed for 42% water loss before reaching consumers.</li>
+
+<li>2023 – South Africa: Johannesburg experienced severe water outages; infrastructure leaks responsible for almost 50% water loss.</li>
+
+<li>2022 – United States: Jackson, Mississippi suffered a major water system collapse; decades of leakage contributed to full network failure.</li>
+
+<li>2021 – Brazil: São Paulo reported leaks causing nearly 40% non-revenue water; worse during peak drought season.</li>
+
+<li>2021 – Mexico City: Severe leakage crisis where 35–40% of treated water was lost daily through damaged pipelines.</li>
+
+<li>2020 – Australia: Sydney Water fined over major leakage events after failing to prevent 490+ network bursts.</li>
+
+<li>2019 – India (Chennai): Pre-monsoon drought exposed 30–35% pipeline leakage, aggravating the city-wide water shortage.</li>
+
+<li>2018 – Cape Town: “Day Zero” crisis revealed 45% distribution loss through leakage before consumer delivery.</li>
+
+<br>
+
+<span class="gh-news-icon">💧</span><span class="n-title"><strong>Current (Ongoing) Hotspots</strong></span>
+
+<li>UK: Persistent surges in leakage across the Thames, Severn & Yorkshire networks; 2024 targets missed by all major water boards.</li>
+
+<li>Middle East: Jordan & Lebanon report >50% system leakage — highest globally — worsening drinking-water access.</li>
+
+<li>Southeast Asia: Manila & Jakarta face rising leakage due to rapid urban expansion and failing distribution mains.</li>
+
+<li>US West Coast: Persistent drought increasing pressure on old water networks; California records >150,000 pipe bursts annually.</li>
+
+
+</ul>
+<!-- ===== Global Highlights: Counters + News (full width) ===== -->
+<section id="globalHighlights" class="global-highlights" aria-label="Global highlights and news">
+  <div class="gh-inner">
+
+    <!-- Counters row -->
+    <div class="gh-counters" role="region" aria-label="Global counters">
+      <div class="gh-counter">
+        <div class="gh-num" id="gh-total">0</div>
+        <div class="gh-label">Global Leakage/day (MLD)</div>
+      </div>
+      <div class="gh-counter">
+        <div class="gh-num" id="gh-countries">0</div>
+        <div class="gh-label">Countries Critical</div>
+      </div>
+      <div class="gh-counter">
+        <div class="gh-num" id="gh-pipelines">0</div>
+        <div class="gh-label">Pipelines at Risk (km)</div>
+      </div>
+      <div class="gh-counter">
+        <div class="gh-num" id="gh-economic">0</div>
+        <div class="gh-label">Annual Economic Loss (USD Millions)</div>
+      </div>
+    </div>
+
+    <!-- News + highlights row -->
+    <div class="gh-news-row">
+      <div class="gh-news">
+        <div class="gh-news-head">Latest Global Water-Leakage News</div>
+        <ul id="ghNewsList" class="gh-news-list" role="list" aria-live="polite"></ul>
+      </div>
+
+      <div class="gh-quickcards">
+        <div class="quickcard">
+          <div class="qc-icon">💧</div>
+          <div class="qc-title">Satellite Detection</div>
+          <div class="qc-body">NASA-sat imagery used to pinpoint underground leaks — accuracy +41%.</div>
+        </div>
+        <div class="quickcard">
+          <div class="qc-icon">⚠️</div>
+          <div class="qc-title">Hotspots</div>
+          <div class="qc-body">India, UK, Middle East & Southeast Asia flagged as ongoing hotspots.</div>
+        </div>
+        <div class="quickcard">
+          <div class="qc-icon">🔧</div>
+          <div class="qc-title">Field Response</div>
+          <div class="qc-body">Automated alerts reduce emergency response time by ~26% in pilots.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ===== End Global Highlights ===== -->
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Global charts + animated ranking -->
+      <div class="col">
+        <div class="card tilt">
+          <div class="card-head">Global Water Leakage — Annual Estimates</div>
+          <div class="card-body">
+            <!-- Global chart as its own section (option C) -->
+            <div class="chart-row">
+              <div class="chart-box">
+                <canvas id="globalChart" aria-label="Global leakage chart"></canvas>
+              </div>
+            </div>
+            <div class="legend small muted">Values are example MLD estimates. Bars animate on load.</div>
+          </div>
+        </div>
+
+        <div class="card tilt">
+          <div class="card-head">Top Countries (Animated Ranking)</div>
+          <div class="card-body">
+            <div class="ranking-list" id="rankingList" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="card tilt">
+          <div class="card-head">Features</div>
+          <div class="features-container">
+
+    <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-tint"></i></div>
+        <h3>Real-Time Leakage Detection</h3>
+        <p>AI-driven algorithms monitor water flow 24/7 and identify abnormalities instantly.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-satellite-dish"></i></div>
+        <h3>Smart IoT Sensors</h3>
+        <p>High-precision sensors continuously track leakage levels across pipelines.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Predictive Analytics</h3>
+        <p>Forecast leakage patterns using historical and global dataset modeling.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <h3>Global Monitoring</h3>
+        <p>Worldwide water-loss insights from India, USA, Europe, Southeast Asia, and more.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bell"></i></div>
+        <h3>Instant Alerts</h3>
+        <p>Push notifications warn authorities before leakage turns into flooding.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Insight Dashboard</h3>
+        <p>Visual charts highlight trends, hotspots, and yearly water-loss analysis.</p>
+    </div>
+
+</div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" onclick="closeLogin()">×</button>
+      <h3>Log in</h3>
+      <form onsubmit="event.preventDefault(); alert('Login demo')">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn primary" type="submit">Sign in</button>
+          <button class="btn ghost" type="button" onclick="closeLogin()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div id="signupModal" class="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" onclick="closeSignup()">×</button>
+      <h3>Sign up</h3>
+      <form onsubmit="event.preventDefault(); alert('Signup demo')">
+        <input type="text" placeholder="Full name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn primary" type="submit">Create</button>
+          <button class="btn ghost" type="button" onclick="closeSignup()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="Front.js" defer></script>
+</body>
+</html>

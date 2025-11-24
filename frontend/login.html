@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaHeal Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="brand-name">AquaHeal</div>
+
+<div class="floating-circles">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="login-box">
+    <h2>Login</h2>
+
+    <div class="input-field">
+        <input type="text" id="email" placeholder="Email">
+    </div>
+
+    <div class="input-field">
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <button class="login-btn" onclick="login()">Login</button>
+    <p class="error" id="error-msg">Invalid login!</p>
+</div>
+
+<script>
+async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("error-msg");
+
+    if (!email || !password) {
+        errorMsg.style.display = "block";
+        errorMsg.textContent = "Please fill in all fields.";
+        return;
+    }
+
+    try {
+        const res = await fetch("https://teamjal.onrender.com/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            localStorage.setItem("token", data.token);
+            window.location.href = "index.html";
+        } else {
+            errorMsg.style.display = "block";
+            errorMsg.textContent = data.error || "Invalid login!";
+        }
+    } catch (e) {
+        errorMsg.style.display = "block";
+        errorMsg.textContent = "Server error!";
+    }
+}
+</script>
+
+</body>
+</html>
