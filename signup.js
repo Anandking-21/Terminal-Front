@@ -102,5 +102,6 @@ async function signup() {
 // ----- REDIRECT TO LOGIN -----
 
 function goLogin() {
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 }
+

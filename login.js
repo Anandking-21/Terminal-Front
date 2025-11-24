@@ -1,3 +1,5 @@
+const backendURL = "https://teamjal.onrender.com";
+
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -6,7 +8,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const errorMessage = document.getElementById("errorMessage");
 
     try {
-        const res = await fetch("https://teamjal.onrender.com/auth/login", {
+        const res = await fetch(`${backendURL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })

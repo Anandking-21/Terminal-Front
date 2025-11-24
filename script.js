@@ -5,19 +5,17 @@ if (!token) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Attach logout click handler
+
     const logoutBtn = document.getElementById("logoutBtn");
 
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
-            console.log("Logout clicked");  // Debug
 
-            localStorage.removeItem("token");   // Remove login token
-            localStorage.clear();               // Extra safety
+            localStorage.removeItem("token");
+            localStorage.clear();
 
-            // Delay ensures redirect happens AFTER token is removed
             setTimeout(() => {
-                window.location.href = "login.html";
+                window.location.href = "Front.html";
             }, 50);
         });
     }
@@ -40,7 +38,8 @@ async function loadData() {
         const data = await res.json();
 
         if (data.length > 0) {
-            document.getElementById("flow-rate").textContent = data[0].flow + " L/min";
+            // FIXED — using value instead of flow
+            document.getElementById("flow-rate").textContent = data[0].value + " L/min";
             document.getElementById("leak-status").textContent = data[0].leak ? "Leak" : "OK";
             document.getElementById("timestamp").textContent = new Date(data[0].time).toLocaleString();
         }
@@ -49,19 +48,18 @@ async function loadData() {
         table.innerHTML = "";
 
         data.forEach((item) => {
-             const rowClass = item.leak ? "leak-row" : "ok-row";
+            const rowClass = item.leak ? "leak-row" : "ok-row";
 
-             table.innerHTML += `
-               <tr class="${rowClass}">
-                 <td>${item.flow}</td>
-                 <td>${item.leak ? "Leak" : "OK"}</td>
-                 <td>${new Date(item.time).toLocaleString()}</td>
-               </tr>
-    `;
-});
+            // FIXED — using item.value
+            table.innerHTML += `
+                <tr class="${rowClass}">
+                    <td>${item.value}</td>
+                    <td>${item.leak ? "Leak" : "OK"}</td>
+                    <td>${new Date(item.time).toLocaleString()}</td>
+                </tr>
+            `;
+        });
 
-
-        // Show logout button
         const logoutBtn = document.getElementById("logoutBtn");
         if (logoutBtn) logoutBtn.style.display = "block";
 
